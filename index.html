@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lunar Banquet Countdown!</title>
+
+	<link rel="stylesheet" href="csaCountdown.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="shadow"></div>
+	<div>
+		<div id="header">LUNAR BANQUET STARTS IN</div>
+		<div class="row" id="timer">
+			<div class="timeContainer column" id="hourContainer">
+				<span class="timeNumber" id="countHours"></span>
+				<div class="timeDescriptor">
+					hours
+				</div>
+			</div>
+			<div class="timeContainer column" id="minuteContainer">
+				<span class="timeNumber" id="countMinutes"></span>
+				<div class="timeDescriptor">
+					minutes
+				</div>
+			</div>
+			<div class="timeContainer column" id="secondContainer">
+				<span class="timeNumber" id="countSeconds"></span>
+				<div class="timeDescriptor">
+					seconds
+				</div>
+			</div>
+		</div>
+		<div class="odometer" id="finalCountdown" style="display: none;">
+
+		</div>
+		<script type="text/javascript">
+			var countDownDate = new Date("Feb 15, 2018 18:00:00").getTime();
+
+			// Update the count down every 1 second
+			var x = setInterval(function() {
+
+			  // Get todays date and time
+			  var now = new Date().getTime();
+
+			  // Find the distance between now an the count down date
+			  var distance = countDownDate - now;
+
+			  // Time calculations for hours, minutes and seconds
+			  
+			  var hours = Math.floor(distance / (1000 * 60 * 60));
+			  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		  	document.getElementById("countHours").innerHTML = hours;
+		  	if (minutes < 10) {
+		  		document.getElementById("countMinutes").innerHTML = '0' + minutes;
+		  	} else {
+		  		document.getElementById("countMinutes").innerHTML = minutes;
+		  	}
+		  	
+		  	if (seconds < 10) {
+		  		document.getElementById("countSeconds").innerHTML = '0' + seconds;
+		  	} else {
+		  		document.getElementById("countSeconds").innerHTML = seconds;
+		  	}
+
+			  if (distance <= 0) {
+			    clearInterval(x);
+			    $("#timer").remove();
+			    $("#shadow").css("opacity", 100)
+			  }
+			}, 1000);
+		</script>
+	</div>
+</body>
+</html>
